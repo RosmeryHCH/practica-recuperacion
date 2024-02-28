@@ -1,0 +1,28 @@
+CREATE DATABASE BD_Libreria;
+USE DD_Libreria;
+
+CREATE TABLE Clientes (
+    ClienteID INT PRIMARY KEY IDENTITY(1,1),
+    Nombre NVARCHAR(100),
+    Genero NVARCHAR(10)
+);
+
+CREATE TABLE Libros (
+    LibroID INT PRIMARY KEY IDENTITY(1,1),
+    Titulo NVARCHAR(100),
+    Tipo INT,
+    Precio DECIMAL(8, 2)
+);
+
+CREATE TABLE Ventas (
+    VentaID INT PRIMARY KEY IDENTITY(1,1),
+    ClienteID INT,
+    LibroID INT,
+    Cantidad INT,
+    ImporteBruto DECIMAL(10, 2),
+    PorcentajeDescuento DECIMAL(5, 2),
+    MontoDescuento DECIMAL(10, 2),
+    ImporteNeto DECIMAL(10, 2),
+    FOREIGN KEY (ClienteID) REFERENCES Clientes(ClienteID),
+    FOREIGN KEY (LibroID) REFERENCES Libros(LibroID)
+);
